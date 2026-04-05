@@ -350,7 +350,7 @@ def main():
 
     watermark_group = parser.add_mutually_exclusive_group()
     watermark_group.add_argument(
-        "--watermark", nargs=1, metavar="TEXT", help="启用水印并设置水印文本"
+        "--watermark", nargs=1, metavar="TEXT", help="启用水印并设置水印文本（默认启用水印'emakefun'）"
     )
     watermark_group.add_argument(
         "--no-watermark", action="store_true", help="禁用所有水印"
