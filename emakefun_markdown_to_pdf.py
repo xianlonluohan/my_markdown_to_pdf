@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""Markdown 转 PDF 工具。
-
-支持单文件转换和批量目录转换。批量转换时输出 ZIP 压缩包。
-"""
-
 import argparse
 import base64
 import mimetypes
@@ -22,7 +15,6 @@ from pymdownx import superfences
 from pymdownx.emoji import gemoji, to_alt
 
 
-# ---------- 常量 ----------
 IGNORE_DIRS = {
     ".git",
     ".github",
@@ -38,7 +30,6 @@ MD_EXTENSIONS = {".md", ".markdown"}
 MARKDONW_CSS = "markdown.css"
 
 
-# ---------- 辅助函数 ----------
 def slugify_unicode(text, separator="-"):
     if not text:
         return ""
@@ -52,7 +43,6 @@ def should_copy(file_path):
 
 
 def embed_images_as_base64(parsed_html, base_dir):
-    """将 BeautifulSoup 中所有的本地图片转为 Base64 Data URL。"""
     for img in parsed_html.find_all("img"):
         src = img.get("src")
         if not src or src.startswith(("http://", "https://", "file://", "//", "data:")):
@@ -79,7 +69,6 @@ def embed_images_as_base64(parsed_html, base_dir):
 
 
 def convert_markdown_to_html(md_text, base_dir):
-    """将 Markdown 文本转换为处理后的 HTML 字符串。"""
     extensions = [
         "toc",
         "extra",
@@ -155,7 +144,6 @@ def convert_markdown_to_html(md_text, base_dir):
 def convert_to_pdf(
     page, input_path, output_path, watermark, watermark_text, css_content
 ):
-    """使用 Playwright 页面将 Markdown 文件转为 PDF。"""
     try:
         with open(input_path, encoding="utf-8") as f:
             md_text = f.read()
@@ -212,7 +200,6 @@ def convert_to_pdf(
 
 
 def single_markdown_to_pdf(input_path, output_path, watermark, watermark_text):
-    """单文件转换"""
     css_path = os.path.join(os.path.dirname(__file__), MARKDONW_CSS)
     with open(css_path, encoding="utf-8") as f:
         css_content = f.read()
@@ -233,7 +220,6 @@ def batch_markdown_to_pdf(
     watermark_text,
     zip_name,
 ):
-    """批量转换目录下所有 Markdown 文件，并打包为 ZIP。"""
     css_path = os.path.join(os.path.dirname(__file__), MARKDONW_CSS)
     with open(css_path, encoding="utf-8") as f:
         css_content = f.read()
@@ -335,7 +321,6 @@ def batch_markdown_to_pdf(
         print(f"Markdown 文件总数: {total_md}, 成功转换: {converted}")
         print(f"其他文件总数: {total_other}, 成功复制: {copied}")
 
-        # 打包为 ZIP
         zip_filename = zip_name if zip_name else "pdf-documents"
         zip_path = os.path.join(output_abs, f"{zip_filename}.zip")
         if os.path.exists(zip_path):
@@ -356,9 +341,7 @@ def batch_markdown_to_pdf(
         browser.close()
         playwright_ctx.stop()
 
-
-# ---------- 命令行入口 ----------
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Markdown 转 PDF 工具")
     parser.add_argument(
         "--input", required=True, help="输入文件（.md/.markdown）或目录"
@@ -382,7 +365,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # 水印处理
     if args.no_watermark:
         use_watermark = False
         watermark_text = ""
@@ -401,7 +383,6 @@ if __name__ == "__main__":
         sys.exit(1)
 
     if os.path.isfile(input_path):
-        # 单文件模式
         if not input_path.lower().endswith((".md", ".markdown")):
             print(
                 f"错误：输入文件必须是 Markdown 文件（扩展名 .md 或 .markdown），"
@@ -435,11 +416,9 @@ if __name__ == "__main__":
         )
 
     elif os.path.isdir(input_path):
-        # 批量模式
         if output_path is None:
             output_dir = input_path
         else:
-            # 检查输出路径是否为目录
             if os.path.exists(output_path):
                 if not os.path.isdir(output_path):
                     print(
@@ -448,7 +427,6 @@ if __name__ == "__main__":
                     )
                     sys.exit(1)
             else:
-                # 路径不存在，检查是否可能被误认为是文件
                 basename = os.path.basename(output_path)
                 if "." in basename and basename not in (".", ".."):
                     print(
@@ -471,3 +449,8 @@ if __name__ == "__main__":
     else:
         print(f"错误：输入路径既不是文件也不是目录：{input_path}")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+    

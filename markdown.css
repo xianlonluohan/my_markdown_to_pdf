@@ -1,15 +1,12 @@
-/* 全局强制使用 Sarasa Fixed SC 字体，覆盖所有元素 */
 * {
     font-family: "Sarasa Fixed SC", monospace !important;
 }
 
-/* 保留 Emoji 的 fallback，确保 emoji 正常显示 */
 body,
 .markdown-body {
     font-family: "Sarasa Fixed SC", monospace, "Apple Color Emoji", "Segoe UI Emoji" !important;
 }
 
-/* 页面设置：A4 纸张，上下边距 2cm，左右边距 0.5cm */
 @page {
     size: A4;
     margin: 20mm 5mm 20mm 5mm;
@@ -41,7 +38,6 @@ body,
 }
 
 
-/* 屏幕显示样式（保留，打印时被覆盖） */
 body {
     box-sizing: border-box;
     min-width: 200px;
@@ -59,7 +55,6 @@ body {
 }
 
 
-/* 水印样式 */
 .watermark {
     position: fixed;
     top: 50%;
@@ -74,7 +69,6 @@ body {
 }
 
 
-/* 标题左对齐（不两端对齐） */
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -84,39 +78,24 @@ body {
     text-align: left;
 }
 
-/* 表格表头强制左对齐 */
 .markdown-body table th {
     text-align: left;
 }
 
-/* 代码高亮：注释颜色改为浅灰色 */
-.highlight .c,
-.highlight .c1,
-.highlight .cm,
-.highlight .cp,
-.highlight .cpf,
-.highlight .cs {
-    color: #8b949e !important;
-    font-style: italic;
-}
 
-/* 引用块边框颜色（蓝色） */
 .markdown-body blockquote {
     border-left-color: #94cfeb !important;
 }
 
-/* 图片链接无边框 */
 a img {
     border: none;
 }
 
-/* 代码块容器：隐藏溢出内容，不显示滚动条 */
 .markdown-body pre,
 .markdown-body .highlight pre {
     overflow: hidden !important;
 }
 
-/* 代码块内容：强制不换行，超出部分隐藏 */
 .markdown-body pre code {
     white-space: pre !important;
     overflow-x: hidden !important;
@@ -124,7 +103,6 @@ a img {
     display: block;
 }
 
-/* 其余样式保持原样（只保留布局、颜色等，字体已全局覆盖） */
 .markdown-body .octicon {
     display: inline-block;
     fill: currentColor;
@@ -1070,7 +1048,6 @@ a img {
     vertical-align: middle;
 }
 
-/*以下为新增*/
 .markdown-body .checklist {
     list-style-type: none;
 }
@@ -1097,6 +1074,21 @@ a img {
     content: attr(data-linenos);
 }
 
+
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.highlight .cp,
+.highlight .cpf,
+.highlight .cs {
+    color: #59636e !important;
+    font-style: italic;
+}
+
+/* .highlight .n {
+    color: #0550ae;
+} */
+
 .highlight .hll {
     background-color: #ffffcc
 }
@@ -1110,7 +1102,7 @@ a img {
 }
 
 .highlight .k {
-    color: #b51f42;
+    color: #cf222e;
 }
 
 .highlight .o {
@@ -1161,27 +1153,27 @@ a img {
 }
 
 .highlight .kc {
-    color: #b51f42;
+    color: #0550ae;
 }
 
 .highlight .kd {
-    color: #b51f42;
+    color: #cf222e;
 }
 
 .highlight .kn {
-    color: #b51f42;
+    color: #cf222e;
 }
 
 .highlight .kp {
-    color: #b51f42
+    color: #cf222e
 }
 
 .highlight .kr {
-    color: #b51f42;
+    color: #cf222e;
 }
 
 .highlight .kt {
-    color: #B00040
+    color: #cf222e
 }
 
 .highlight .m {
@@ -1189,7 +1181,7 @@ a img {
 }
 
 .highlight .s {
-    color: #181852f9
+    color: #0a3069
 }
 
 .highlight .na {
@@ -1197,16 +1189,14 @@ a img {
 }
 
 .highlight .nb {
-    color: #550786
+    color: #0550ae
 }
 
 .highlight .nc {
-    color: #000000;
+    color: #6639ba;
 }
 
-.highlight .no {
-    color: #1752a5
-}
+
 
 .highlight .nd {
     color: #550786
@@ -1223,7 +1213,7 @@ a img {
 }
 
 .highlight .nf {
-    color: #28065f
+    color: #6639ba
 }
 
 .highlight .nl {
@@ -1231,7 +1221,7 @@ a img {
 }
 
 .highlight .nn {
-    color: #000000;
+    color: #0550ae;
 }
 
 .highlight .nt {
@@ -1253,23 +1243,23 @@ a img {
 }
 
 .highlight .mb {
-    color: #4463b1
+    color: #0550ae
 }
 
 .highlight .mf {
-    color: #1752a5
+    color: #0550ae
 }
 
 .highlight .mh {
-    color: #1752a5
+    color: #0550ae
 }
 
 .highlight .mi {
-    color: #1752a5
+    color: #0550ae
 }
 
 .highlight .mo {
-    color: #1752a5
+    color: #0550ae
 }
 
 .highlight .sa {
@@ -1289,21 +1279,21 @@ a img {
 }
 
 .highlight .sd {
-    color: #183a87;
+    color: #0a3069;
     font-style: italic
 }
 
 .highlight .s2 {
-    color: #183a87
+    color: #0a3069
 }
 
 
 .highlight .se {
-    color: #181852f9;
+    color: #0a3069;
 }
 
 .highlight .sh {
-    color: #27274af9
+    color: #0a3069
 }
 
 .highlight .si {
@@ -1328,7 +1318,7 @@ a img {
 }
 
 .highlight .bp {
-    color: #b51f42
+    color: #cf222e
 }
 
 .highlight .fm {
@@ -1352,15 +1342,17 @@ a img {
 }
 
 .highlight .il {
-    color: #666666
+    color: #0550ae
 }
 
 
 .highlight .cp {
-    color: #b51f42 !important;
+    color: #cf222e !important;
 }
 
-/* 针对纯文本代码块（内部无 <span> 元素）允许自动换行 */
+
+
+
 .markdown-body pre code:not(:has(span)) {
     white-space: pre-wrap !important;
     word-break: break-word !important;
