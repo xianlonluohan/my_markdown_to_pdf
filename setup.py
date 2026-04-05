@@ -21,6 +21,7 @@ setup(
         "pymdown-extensions",
         "python-markdown-math",
         "markdown-checklist",
+        "pygments",
     ],
     entry_points={
         "console_scripts": [
