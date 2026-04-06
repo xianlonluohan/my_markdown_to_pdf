@@ -10,9 +10,9 @@ setup(
     maintainer_email="chenliang@null-lab.com",
     url="https://github.com/xianlonluohan/my_markdown_to_pdf",
     keywords="markdown pdf converter playwright",
-    packages=find_packages(),           # 自动找到 emakefun_markdown_to_pdf 包
+    packages=find_packages(),        
     package_data={
-        "emakefun_markdown_to_pdf": ["markdown.css"],   # 明确指定包内的数据文件
+        "emakefun_markdown_to_pdf": ["markdown.css"],   
     },
     include_package_data=True,
     install_requires=[
@@ -26,7 +26,6 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            # 命令名 = 包名:函数名
             "emakefun_markdown_to_pdf = emakefun_markdown_to_pdf:main",
         ],
     },

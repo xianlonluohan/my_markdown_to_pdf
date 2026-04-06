@@ -7,7 +7,6 @@ import shutil
 import sys
 import zipfile
 from pathlib import Path
-
 from bs4 import BeautifulSoup
 from markdown import markdown
 from playwright.sync_api import sync_playwright
@@ -38,8 +37,8 @@ def slugify_unicode(text, separator="-"):
 
 
 def should_copy(file_path):
-    ext = os.path.splitext(file_path)[1].lower()
-    return ext not in MD_EXTENSIONS and ext not in IMAGE_EXTENSIONS
+    exit = os.path.splitext(file_path)[1].lower()
+    return exit not in MD_EXTENSIONS and exit not in IMAGE_EXTENSIONS
 
 
 def embed_images_as_base64(parsed_html, base_dir):
@@ -350,10 +349,10 @@ def main():
 
     watermark_group = parser.add_mutually_exclusive_group()
     watermark_group.add_argument(
-        "--watermark", nargs=1, metavar="TEXT", help="启用水印并设置水印文本（默认启用水印'emakefun'）"
+        "--watermark", nargs=1, metavar="text", help="启用水印并设置水印文本（默认启用水印'emakefun'）"
     )
     watermark_group.add_argument(
-        "--no-watermark", action="store_true", help="禁用所有水印"
+        "--no-watermark", action="store_true", help="禁用水印"
     )
 
     parser.add_argument(
@@ -447,10 +446,6 @@ def main():
             zip_name=args.zip_name,
         )
     else:
-        print(f"错误：输入路径既不是文件也不是目录：{input_path}")
+        print(f"错误：输入路径既不是markdown文件也不是目录：{input_path}")
         sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()
     
